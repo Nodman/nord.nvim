@@ -39,8 +39,8 @@ theme.loadSyntax = function()
 		markdownH3Delimiter = { fg = nord.nord14_gui },
 	}
 
-  -- Bold highlights --
-  if vim.g.nord_bold == false then
+	-- Bold highlights --
+	if vim.g.nord_bold == false then
 		syntax.htmlH1 = { fg = nord.nord8_gui }
 		syntax.htmlH2 = { fg = nord.nord11_gui }
 		syntax.htmlH3 = { fg = nord.nord14_gui }
@@ -50,7 +50,7 @@ theme.loadSyntax = function()
 		syntax.markdownH2 = { fg = nord.nord11_gui }
 		syntax.markdownH3 = { fg = nord.nord14_gui }
 		syntax.Error = { fg = nord.nord11_gui, bg = nord.none, style = "underline" } -- any erroneous construct without bold
-  else
+	else
 		syntax.htmlH1 = { fg = nord.nord8_gui, style = "bold" }
 		syntax.htmlH2 = { fg = nord.nord11_gui, style = "bold" }
 		syntax.htmlH3 = { fg = nord.nord14_gui, style = "bold" }
@@ -60,7 +60,7 @@ theme.loadSyntax = function()
 		syntax.markdownH2 = { fg = nord.nord11_gui, style = "bold" }
 		syntax.markdownH3 = { fg = nord.nord14_gui, style = "bold" }
 		syntax.Error = { fg = nord.nord11_gui, bg = nord.none, style = "bold,underline" } -- any erroneous construct with bold
-  end
+	end
 
 	-- Italic comments
 	if vim.g.nord_italic == false then
@@ -299,16 +299,19 @@ theme.loadTreeSitter = function()
 		["@punctuation.bracket"] = { fg = nord.nord8_gui },
 		["@punctuation.special"] = { fg = nord.nord8_gui },
 		["@symbol"] = { fg = nord.nord15_gui },
-		["@type"] = { fg = nord.nord9_gui },
-		["@type.builtin"] = { fg = nord.nord9_gui },
-		["@tag"] = { fg = nord.nord4_gui },
-		["@tag.delimiter"] = { fg = nord.nord15_gui },
+		["@type"] = { fg = nord.nord12_gui },
+		["@type.builtin"] = { fg = nord.nord8_gui },
+		["@tag"] = { fg = nord.nord7_gui },
+		["@tag.delimiter"] = { fg = nord.nord10_gui, style = "bold" },
 		["@text"] = { fg = nord.nord4_gui },
 		["@text.reference"] = { fg = nord.nord15_gui },
 		["@text.emphasis"] = { fg = nord.nord10_gui },
 		["@text.underline"] = { fg = nord.nord4_gui, bg = nord.none, style = "underline" },
 		["@text.literal"] = { fg = nord.nord4_gui },
 		["@text.uri"] = { fg = nord.nord14_gui },
+		["@object.key"] = { fg = nord.nord4_gui },
+		["@type.key"] = { fg = nord.nord4_gui },
+		["@todo"] = { fg = nord.nord15_gui },
 
 		-- @todo Missing highlights
 		-- @function.call
@@ -325,7 +328,7 @@ theme.loadTreeSitter = function()
 		-- @string.special
 	}
 
-  if vim.g.nord_bold == false then
+	if vim.g.nord_bold == false then
 		treesitter.TSVariableBuiltin = { fg = nord.nord4_gui }
 		treesitter.TSBoolean = { fg = nord.nord9_gui } -- For booleans.
 		treesitter.TSConstBuiltin = { fg = nord.nord7_gui } -- For constant that are built in the language: `nil` in Lua.
@@ -340,7 +343,7 @@ theme.loadTreeSitter = function()
 		treesitter["@constant.macro"] = { fg = nord.nord7_gui }
 		treesitter["@text.title"] = { fg = nord.nord10_gui, bg = nord.none }
 		treesitter["@text.strong"] = { fg = nord.nord10_gui, bg = nord.none }
-  else
+	else
 		treesitter.TSVariableBuiltin = { fg = nord.nord4_gui, style = "bold" }
 		treesitter.TSBoolean = { fg = nord.nord9_gui, style = "bold" }
 		treesitter.TSConstBuiltin = { fg = nord.nord7_gui, style = "bold" }
@@ -355,7 +358,7 @@ theme.loadTreeSitter = function()
 		treesitter["@constant.macro"] = { fg = nord.nord7_gui, style = "bold" }
 		treesitter["@text.title"] = { fg = nord.nord10_gui, bg = nord.none, style = "bold" }
 		treesitter["@text.strong"] = { fg = nord.nord10_gui, bg = nord.none, style = "bold" }
-  end
+	end
 
 	if vim.g.nord_italic == false then
 		-- Comments
@@ -389,7 +392,7 @@ theme.loadTreeSitter = function()
 		treesitter["@function.builtin"] = { fg = nord.nord8_gui }
 		treesitter["@namespace"] = { fg = nord.nord4_gui }
 		treesitter["@field"] = { fg = nord.nord4_gui }
-		treesitter["@property"] = { fg = nord.nord10_gui }
+		treesitter["@property"] = { fg = nord.nord7_gui }
 		treesitter["@keyword"] = { fg = nord.nord9_gui }
 		treesitter["@keyword.function"] = { fg = nord.nord8_gui }
 		treesitter["@keyword.return"] = { fg = nord.nord8_gui }
@@ -431,7 +434,7 @@ theme.loadTreeSitter = function()
 		treesitter["@function.builtin"] = { fg = nord.nord8_gui, style = "italic" }
 		treesitter["@namespace"] = { fg = nord.nord4_gui, style = "italic" }
 		treesitter["@field"] = { fg = nord.nord4_gui, style = "italic" }
-		treesitter["@property"] = { fg = nord.nord10_gui, style = "italic" }
+		treesitter["@property"] = { fg = nord.nord7_gui, style = "italic" }
 		treesitter["@keyword"] = { fg = nord.nord9_gui, style = "italic" }
 		treesitter["@keyword.function"] = { fg = nord.nord8_gui, style = "italic" }
 		treesitter["@keyword.return"] = { fg = nord.nord8_gui, style = "italic" }
@@ -472,11 +475,11 @@ theme.loadLSP = function()
 		LspDiagnosticsFloatingError = { fg = nord.nord11_gui }, -- used for "Error" diagnostic messages in the diagnostics float
 		LspDiagnosticsVirtualTextError = { fg = nord.nord11_gui }, -- Virtual text "Error"
 		LspDiagnosticsUnderlineError = { style = "undercurl", sp = nord.nord11_gui }, -- used to underline "Error" diagnostics.
-		LspDiagnosticsDefaultWarning = { fg = nord.nord15_gui }, -- used for "Warning" diagnostic signs in sign column
-		LspDiagnosticsSignWarning = { fg = nord.nord15_gui }, -- used for "Warning" diagnostic signs in sign column
-		LspDiagnosticsFloatingWarning = { fg = nord.nord15_gui }, -- used for "Warning" diagnostic messages in the diagnostics float
-		LspDiagnosticsVirtualTextWarning = { fg = nord.nord15_gui }, -- Virtual text "Warning"
-		LspDiagnosticsUnderlineWarning = { style = "undercurl", sp = nord.nord15_gui }, -- used to underline "Warning" diagnostics.
+		LspDiagnosticsDefaultWarning = { fg = nord.nord13_gui }, -- used for "Warning" diagnostic signs in sign column
+		LspDiagnosticsSignWarning = { fg = nord.nord13_gui }, -- used for "Warning" diagnostic signs in sign column
+		LspDiagnosticsFloatingWarning = { fg = nord.nord13_gui }, -- used for "Warning" diagnostic messages in the diagnostics float
+		LspDiagnosticsVirtualTextWarning = { fg = nord.nord13_gui }, -- Virtual text "Warning"
+		LspDiagnosticsUnderlineWarning = { style = "undercurl", sp = nord.nord13_gui }, -- used to underline "Warning" diagnostics.
 		LspDiagnosticsDefaultInformation = { fg = nord.nord10_gui }, -- used for "Information" diagnostic virtual text
 		LspDiagnosticsSignInformation = { fg = nord.nord10_gui }, -- used for "Information" diagnostic signs in sign column
 		LspDiagnosticsFloatingInformation = { fg = nord.nord10_gui }, -- used for "Information" diagnostic messages in the diagnostics float
